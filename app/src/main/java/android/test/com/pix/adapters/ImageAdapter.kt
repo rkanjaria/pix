@@ -1,6 +1,7 @@
 package android.test.com.pix.adapters
 
 import android.arch.paging.PagedListAdapter
+import android.support.constraint.ConstraintSet
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.test.com.pix.R
@@ -14,11 +15,12 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.image_recycler_layout.view.*
 import kotlinx.android.synthetic.main.loader_recycler_layout.view.*
 
-class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, RecyclerView.ViewHolder>(ImageDiffcallback) {
+class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, RecyclerView.ViewHolder>(ImageDiffCallback) {
 
     private var state = State.LOADING
     private val IMAGE_VIEW = 1
     private val LOADER_VIEW = 0
+    private val set = ConstraintSet()
 
     override fun onCreateViewHolder(parent: ViewGroup, itemViewType: Int): RecyclerView.ViewHolder {
         when (itemViewType) {
@@ -48,11 +50,14 @@ class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, Recy
         notifyItemChanged(super.getItemCount())
     }
 
-
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val view = itemView
-        fun bindImages(images: Image?) {
-            view.pic.loadImage(images?.urls?.regular)
+        fun bindImages(image: Image?) {
+            view.pic.loadImage(image?.urls?.regular, image?.color)
+            val ratio = String.format("%d:%d", image?.width, image?.height)
+            set.clone(view.parentContranint)
+            set.setDimensionRatio(view.pic.id, ratio)
+            set.applyTo(view.parentContranint)
         }
     }
 
@@ -61,7 +66,7 @@ class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, Recy
         fun bindLoader(state: State) {
             view.progressBar.visibility = if (state == State.LOADING) View.VISIBLE else View.GONE
             if (state == State.ERROR) {
-                view.context.showMessage("Something went wrong")
+                view.context.showMessage(view.context.getString(R.string.something_went_wrong))
             }
         }
     }
@@ -71,16 +76,9 @@ class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, Recy
     }
 
     companion object {
-        val ImageDiffcallback = object : DiffUtil.ItemCallback<Image>() {
-
-            override fun areContentsTheSame(oldImage: Image, newImage: Image): Boolean {
-                return oldImage.urls == newImage.urls
-            }
-
-            override fun areItemsTheSame(oldImage: Image, newImage: Image): Boolean {
-                return oldImage == newImage
-            }
-
+        val ImageDiffCallback = object : DiffUtil.ItemCallback<Image>() {
+            override fun areContentsTheSame(oldImage: Image, newImage: Image) = oldImage.urls == newImage.urls
+            override fun areItemsTheSame(oldImage: Image, newImage: Image) = oldImage == newImage
         }
     }
 }

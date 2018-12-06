@@ -1,6 +1,8 @@
 package android.test.com.pix.utils
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,12 +15,14 @@ import com.bumptech.glide.request.RequestOptions
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false) =
         LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
-fun ImageView.loadImage(url: String?) {
+fun ImageView.loadImage(url: String?, placeholderColor: String? = "#E0E0E0") {
+    val placeholder = ColorDrawable()
+    placeholder.color = Color.parseColor(placeholderColor)
     Glide.with(context)
             .load(url)
             .apply(RequestOptions().centerCrop())
-            //.apply(RequestOptions.placeholderOf(placeholder))
-            //.apply(RequestOptions.errorOf(placeholder))
+            .apply(RequestOptions.placeholderOf(placeholder))
+            .apply(RequestOptions.errorOf(placeholder))
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(this)
 }

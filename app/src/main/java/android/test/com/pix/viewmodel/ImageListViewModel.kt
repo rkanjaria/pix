@@ -18,14 +18,15 @@ class ImageListViewModel : ViewModel() {
     private val apiService = RetrofitHelper.create()
     var imageList: LiveData<PagedList<Image>>
     private val compositeDisposable = CompositeDisposable()
-    private val query = QUERY
-    private val imageDataSourceFactory: ImageDataSourceFactory
+    private var query = QUERY
+    private var imageDataSourceFactory: ImageDataSourceFactory
+    private val pageSize = 5
 
     init {
         imageDataSourceFactory = ImageDataSourceFactory(apiService, compositeDisposable, query)
         val config = PagedList.Config.Builder()
-                .setPageSize(5)
-                .setInitialLoadSizeHint(10)
+                .setPageSize(pageSize)
+                .setInitialLoadSizeHint(pageSize * 2)
                 .setEnablePlaceholders(false)
                 .build()
         imageList = LivePagedListBuilder<Int, Image>(imageDataSourceFactory, config).build()
@@ -44,4 +45,8 @@ class ImageListViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 
+    fun setQuery(query: String?) {
+        if (query != null && query.isNotEmpty())
+            this.query = query
+    }
 }
