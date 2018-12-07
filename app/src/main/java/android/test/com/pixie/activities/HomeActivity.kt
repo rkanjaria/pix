@@ -1,28 +1,44 @@
-package android.test.com.pix.activities
+package android.test.com.pixie.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v4.view.ViewCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.test.com.pix.R
-import android.test.com.pix.adapters.ImageAdapter
-import android.test.com.pix.utils.State
-import android.test.com.pix.utils.showMessage
-import android.test.com.pix.viewmodel.ImageListViewModel
+import android.test.com.pixie.adapters.ImageAdapter
+import android.test.com.pixie.models.Image
+import android.test.com.pixie.utils.PARCELABLE_OBJECT
+import android.test.com.pixie.utils.State
+import android.test.com.pixie.utils.showMessage
+import android.test.com.pixie.viewmodel.ImageListViewModel
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
+class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageAdapter.ImageAdapterListener {
+
+    override fun onClickImage(image: Image?, imageCard: View) {
+        val imageIntent = Intent(this, ImageActivity::class.java)
+        imageIntent.putExtra(PARCELABLE_OBJECT, image)
+
+        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+                imageCard, ViewCompat.getTransitionName(imageCard)!!)
+        startActivity(imageIntent, activityOptions.toBundle())
+    }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        viewModel.setQuery(query)
-        imageAdapter.notifyDataSetChanged()
+        if (query != null && query.isNotEmpty()) {
+            imageAdapter.clear()
+            removeObserver(query)
+        }
         return true
     }
 
@@ -67,11 +83,20 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun initAdapter() {
-        imageAdapter = ImageAdapter { viewModel.retry() }
-        imageRecyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        imageRecyclerview.adapter = imageAdapter
+        imageAdapter = ImageAdapter({ viewModel.retry() }, this)
+        pixRecyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        pixRecyclerview.adapter = imageAdapter
+        initObserver()
+    }
+
+    private fun initObserver() {
         viewModel.imageList.observe(this, Observer {
             imageAdapter.submitList(it)
         })
+    }
+
+    private fun removeObserver(query: String) {
+        viewModel.removeObserver(this, query)
+        initObserver()
     }
 }

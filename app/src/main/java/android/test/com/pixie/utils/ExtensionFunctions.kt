@@ -1,4 +1,4 @@
-package android.test.com.pix.utils
+package android.test.com.pixie.utils
 
 import android.content.Context
 import android.graphics.Color
@@ -21,6 +21,7 @@ fun ImageView.loadImage(url: String?, placeholderColor: String? = "#E0E0E0") {
     Glide.with(context)
             .load(url)
             .apply(RequestOptions().centerCrop())
+            .apply(RequestOptions().dontTransform())
             .apply(RequestOptions.placeholderOf(placeholder))
             .apply(RequestOptions.errorOf(placeholder))
             .transition(DrawableTransitionOptions.withCrossFade())

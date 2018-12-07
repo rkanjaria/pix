@@ -1,10 +1,10 @@
-package android.test.com.pix.datasource
+package android.test.com.pixie.datasource
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
-import android.test.com.pix.helpers.RetrofitApiService
-import android.test.com.pix.models.Image
-import android.test.com.pix.utils.State
+import android.test.com.pixie.helpers.RetrofitApiService
+import android.test.com.pixie.models.Image
+import android.test.com.pixie.utils.State
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

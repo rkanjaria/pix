@@ -12,14 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.HomeActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
+            android:name="android.test.com.pixie.activities.HomeActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="android.test.com.pixie.activities.ImageActivity"></activity>
     </application>
 
 </manifest>

@@ -1,7 +1,7 @@
-package android.test.com.pix.helpers
+package android.test.com.pixie.helpers
 
-import android.test.com.pix.utils.API_KEY
-import android.test.com.pix.utils.BASE_URL
+import android.test.com.pixie.utils.API_KEY
+import android.test.com.pixie.utils.BASE_URL
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response

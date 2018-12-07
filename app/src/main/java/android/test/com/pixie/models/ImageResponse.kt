@@ -1,4 +1,4 @@
-package android.test.com.pix.models
+package android.test.com.pixie.models
 
 import com.google.gson.annotations.SerializedName
 

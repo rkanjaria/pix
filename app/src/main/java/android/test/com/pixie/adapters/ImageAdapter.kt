@@ -1,21 +1,21 @@
-package android.test.com.pix.adapters
+package android.test.com.pixie.adapters
 
 import android.arch.paging.PagedListAdapter
 import android.support.constraint.ConstraintSet
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.test.com.pix.R
-import android.test.com.pix.models.Image
-import android.test.com.pix.utils.State
-import android.test.com.pix.utils.inflate
-import android.test.com.pix.utils.loadImage
-import android.test.com.pix.utils.showMessage
+import android.test.com.pixie.models.Image
+import android.test.com.pixie.utils.State
+import android.test.com.pixie.utils.inflate
+import android.test.com.pixie.utils.loadImage
+import android.test.com.pixie.utils.showMessage
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.image_recycler_layout.view.*
 import kotlinx.android.synthetic.main.loader_recycler_layout.view.*
 
-class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, RecyclerView.ViewHolder>(ImageDiffCallback) {
+class ImageAdapter(private val retry: () -> Unit, val mListener: ImageAdapterListener) : PagedListAdapter<Image, RecyclerView.ViewHolder>(ImageDiffCallback) {
 
     private var state = State.LOADING
     private val IMAGE_VIEW = 1
@@ -58,6 +58,7 @@ class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, Recy
             set.clone(view.parentContranint)
             set.setDimensionRatio(view.pic.id, ratio)
             set.applyTo(view.parentContranint)
+            view.setOnClickListener { mListener.onClickImage(image, view.imageCard) }
         }
     }
 
@@ -75,10 +76,18 @@ class ImageAdapter(private val retry: () -> Unit) : PagedListAdapter<Image, Recy
         return if (position < super.getItemCount()) IMAGE_VIEW else LOADER_VIEW
     }
 
+    fun clear() {
+        notifyItemRangeRemoved(0, itemCount)
+    }
+
     companion object {
         val ImageDiffCallback = object : DiffUtil.ItemCallback<Image>() {
             override fun areContentsTheSame(oldImage: Image, newImage: Image) = oldImage.urls == newImage.urls
             override fun areItemsTheSame(oldImage: Image, newImage: Image) = oldImage == newImage
         }
+    }
+
+    interface ImageAdapterListener {
+        fun onClickImage(image: Image?, imageCard: View)
     }
 }

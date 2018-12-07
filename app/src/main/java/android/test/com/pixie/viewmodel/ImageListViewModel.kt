@@ -1,16 +1,17 @@
-package android.test.com.pix.viewmodel
+package android.test.com.pixie.viewmodel
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
-import android.test.com.pix.datasource.ImageDataSource
-import android.test.com.pix.datasource.ImageDataSourceFactory
-import android.test.com.pix.helpers.RetrofitHelper
-import android.test.com.pix.models.Image
-import android.test.com.pix.utils.QUERY
-import android.test.com.pix.utils.State
+import android.test.com.pixie.datasource.ImageDataSource
+import android.test.com.pixie.datasource.ImageDataSourceFactory
+import android.test.com.pixie.helpers.RetrofitHelper
+import android.test.com.pixie.models.Image
+import android.test.com.pixie.utils.QUERY
+import android.test.com.pixie.utils.State
 import io.reactivex.disposables.CompositeDisposable
 
 class ImageListViewModel : ViewModel() {
@@ -20,7 +21,7 @@ class ImageListViewModel : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
     private var query = QUERY
     private var imageDataSourceFactory: ImageDataSourceFactory
-    private val pageSize = 5
+    private val pageSize = 10
 
     init {
         imageDataSourceFactory = ImageDataSourceFactory(apiService, compositeDisposable, query)
@@ -45,8 +46,9 @@ class ImageListViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 
-    fun setQuery(query: String?) {
-        if (query != null && query.isNotEmpty())
-            this.query = query
+    fun removeObserver(lifeCyclerOwener: LifecycleOwner, query: String) {
+        imageList.removeObservers(lifeCyclerOwener)
+        imageDataSourceFactory.search(query)
+        imageList.value?.dataSource?.invalidate()
     }
 }

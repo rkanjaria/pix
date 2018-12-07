@@ -1,6 +1,6 @@
-package android.test.com.pix.helpers
+package android.test.com.pixie.helpers
 
-import android.test.com.pix.models.ImageResponse
+import android.test.com.pixie.models.ImageResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
