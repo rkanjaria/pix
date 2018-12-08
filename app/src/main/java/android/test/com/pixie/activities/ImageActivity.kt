@@ -21,8 +21,8 @@ class ImageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image)
 
         val image = intent.getParcelableExtra<Image>(PARCELABLE_OBJECT)
-        supportPostponeEnterTransition()
 
+        supportPostponeEnterTransition()
         Glide.with(this)
                 .load(image.urls?.regular)
                 .apply(RequestOptions().dontTransform())

@@ -9,4 +9,19 @@
         <item name="android:windowContentTransitions">true</item>
     </style>
 
+    <string-array name="search_filters">
+        <item>Cars</item>
+        <item>Birds</item>
+        <item>Nature</item>
+        <item>Fashion</item>
+        <item>Wallpapers</item>
+        <item>Animals</item>
+        <item>Girls</item>
+        <item>Travel</item>
+        <item>People</item>
+        <item>Health</item>
+        <item>Architecture</item>
+        <item>Food and Drink</item>
+    </string-array>
+
 </resources>

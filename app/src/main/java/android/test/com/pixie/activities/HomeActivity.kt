@@ -22,13 +22,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
 
 class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageAdapter.ImageAdapterListener {
 
     override fun onClickImage(image: Image?, imageCard: View) {
         val imageIntent = Intent(this, ImageActivity::class.java)
         imageIntent.putExtra(PARCELABLE_OBJECT, image)
-
         val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
                 imageCard, ViewCompat.getTransitionName(imageCard)!!)
         startActivity(imageIntent, activityOptions.toBundle())
@@ -59,15 +59,15 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
 
     fun initSearchView() {
         val searchText = pixSearch.findViewById<TextView>(android.support.v7.appcompat.R.id.search_src_text)
-        searchText.typeface = ResourcesCompat.getFont(this, R.font.niramit_regular)
-        searchText.textSize = 18f
+        searchText.typeface = ResourcesCompat.getFont(this, R.font.opensans_regular)
+        searchText.textSize = 16f
         searchText.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
         searchText.setHintTextColor(ContextCompat.getColor(this, R.color.colorOpacityWhite))
         val searchButtonImage = pixSearch.findViewById<ImageView>(android.support.v7.appcompat.R.id.search_mag_icon)
         searchButtonImage.setImageResource(R.drawable.ic_search)
         val closeButtonImage = pixSearch.findViewById<ImageView>(R.id.search_close_btn)
         closeButtonImage.setImageResource(R.drawable.ic_close)
-        pixSearch.queryHint = "Eg. Cars, Superheros..."
+        pixSearch.queryHint = getRandomString()
         pixSearch.setOnQueryTextListener(this)
     }
 
@@ -99,4 +99,11 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
         viewModel.removeObserver(this, query)
         initObserver()
     }
+
+    override fun onResume() {
+        super.onResume()
+        pixSearch.queryHint = getRandomString()
+    }
+
+    private fun getRandomString() = "Try ${resources.getStringArray(R.array.search_filters)[Random().nextInt(resources.getStringArray(R.array.search_filters).size)]}"
 }

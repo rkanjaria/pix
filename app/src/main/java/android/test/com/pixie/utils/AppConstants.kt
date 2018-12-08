@@ -4,3 +4,4 @@ val API_KEY = "Client-ID 2d218315793cc92c5e121b4789ba81348ebcd091b93e9997ed07a16
 val BASE_URL = "https://api.unsplash.com/"
 var QUERY = "cars"
 var PARCELABLE_OBJECT = "object"
+var BITMAP_OBJECT = "bitmap"
