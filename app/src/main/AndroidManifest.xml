@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="android.test.com.pixie.activities.ImageActivity"></activity>
+        <activity
+            android:name="android.test.com.pixie.activities.ImageActivity"
+            android:theme="@style/AppTheme.Transparent"/>
     </application>
 
 </manifest>

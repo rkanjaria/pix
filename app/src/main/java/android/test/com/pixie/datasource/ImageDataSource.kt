@@ -22,7 +22,7 @@ class ImageDataSource(private val retrofitApiService: RetrofitApiService,
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Image>) {
         updateState(State.LOADING)
         compositeDisposable.add(
-                retrofitApiService.SearchPhotos(1, query)
+                retrofitApiService.searchPhotos(1, query)
                         .subscribe({
                             updateState(State.DONE)
                             callback.onResult(it.imageList, null, 2)
@@ -36,7 +36,7 @@ class ImageDataSource(private val retrofitApiService: RetrofitApiService,
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Image>) {
         updateState(State.LOADING)
         compositeDisposable.add(
-                retrofitApiService.SearchPhotos(params.key, query)
+                retrofitApiService.searchPhotos(params.key, query)
                         .subscribe({
                             updateState(State.DONE)
                             callback.onResult(it.imageList, params.key + 1)

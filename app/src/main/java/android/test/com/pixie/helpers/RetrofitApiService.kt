@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitApiService {
-
     @GET("search/photos")
-    fun SearchPhotos(@Query("page") page: Int, @Query("query") query: String): Observable<ImageResponse>
+    fun searchPhotos(@Query("page") page: Int, @Query("query") query: String): Observable<ImageResponse>
 }

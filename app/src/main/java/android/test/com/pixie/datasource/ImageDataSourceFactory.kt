@@ -12,11 +12,11 @@ class ImageDataSourceFactory(
         private var query: String
 ) : DataSource.Factory<Int, Image>() {
 
-    val imageDatasourceLiveData = MutableLiveData<ImageDataSource>()
+    val imageDataSourceLiveData = MutableLiveData<ImageDataSource>()
 
     override fun create(): DataSource<Int, Image> {
         val imageDataSource = ImageDataSource(retrofitApiservice, compositeDisposable, query)
-        imageDatasourceLiveData.postValue(imageDataSource)
+        imageDataSourceLiveData.postValue(imageDataSource)
         return imageDataSource
     }
 
