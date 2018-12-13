@@ -59,7 +59,7 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
 
     fun initSearchView() {
         val searchText = pixSearch.findViewById<TextView>(android.support.v7.appcompat.R.id.search_src_text)
-        searchText.typeface = ResourcesCompat.getFont(this, R.font.lato_regular)
+        searchText.typeface = ResourcesCompat.getFont(this, R.font.lato_medium)
         searchText.textSize = 16f
         searchText.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
         searchText.setHintTextColor(ContextCompat.getColor(this, R.color.colorOpacityWhite))

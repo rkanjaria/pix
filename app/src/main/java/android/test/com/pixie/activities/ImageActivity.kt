@@ -1,5 +1,6 @@
 package android.test.com.pixie.activities
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.constraint.ConstraintSet
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.test.com.pix.R
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.utils.PARCELABLE_OBJECT
+import android.test.com.pixie.utils.loadCircularImage
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -26,13 +28,10 @@ class ImageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_image)
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         supportPostponeEnterTransition()
-        initImage()
-
-        imageCard.setOnClickListener(null)
-        (imageCard.parent as View).setOnClickListener { onBackPressed() }
+        initUI()
     }
 
-    private fun initImage() {
+    private fun initUI() {
         val image = intent.getParcelableExtra<Image>(PARCELABLE_OBJECT)
         val ratio = String.format("%d:%d", image?.width, image?.height)
         set.clone(parentContranint)
@@ -54,6 +53,19 @@ class ImageActivity : AppCompatActivity() {
                         return false
                     }
                 }).into(bigImage)
+
+        userName.text = image?.user?.name
+        userLikes.text = image?.likes.toString()
+        userImage.loadCircularImage(image.user?.profileImage?.large)
+        userName.setOnClickListener { userImage.performClick() }
+        userImage.setOnClickListener {
+            val userIntent = Intent(this, UserProfileActivity::class.java)
+            userIntent.putExtra(PARCELABLE_OBJECT, image.user)
+            startActivity(userIntent)
+        }
+
+        imageCard.setOnClickListener(null)
+        (imageCard.parent as View).setOnClickListener { onBackPressed() }
     }
 
     override fun onBackPressed() {

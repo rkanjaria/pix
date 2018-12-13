@@ -10,14 +10,17 @@ data class Image(
         @SerializedName("height") val height: Long,
         @SerializedName("color") val color: String?,
         @SerializedName("urls") val urls: Urls?,
-        @SerializedName("likes") val likes: Int) : Parcelable {
+        @SerializedName("likes") val likes: Int,
+        @SerializedName("user") val user: User?
+) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readLong(),
             parcel.readLong(),
             parcel.readString(),
             parcel.readParcelable(Urls::class.java.classLoader),
-            parcel.readInt()) {
+            parcel.readInt(),
+            parcel.readParcelable(User::class.java.classLoader)) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -27,6 +30,7 @@ data class Image(
         parcel.writeString(color)
         parcel.writeParcelable(urls, flags)
         parcel.writeInt(likes)
+        parcel.writeParcelable(user, flags)
     }
 
     override fun describeContents(): Int {

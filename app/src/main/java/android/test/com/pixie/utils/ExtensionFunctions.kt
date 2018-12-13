@@ -28,6 +28,18 @@ fun ImageView.loadImage(url: String?, placeholderColor: String? = "#E0E0E0") {
             .into(this)
 }
 
+fun ImageView.loadCircularImage(url: String?, placeholderColor: String? = "#E0E0E0") {
+    val placeholder = ColorDrawable()
+    placeholder.color = Color.parseColor(placeholderColor)
+    Glide.with(context)
+            .load(url)
+            .apply(RequestOptions().centerCrop())
+            .apply(RequestOptions.circleCropTransform())
+            .apply(RequestOptions.errorOf(placeholder))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+}
+
 fun Context.showMessage(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
 }

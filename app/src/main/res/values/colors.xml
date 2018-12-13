@@ -5,8 +5,13 @@
     <color name="colorAccent">#3a4e70</color>
     <color name="colorBackground">#22252a</color>
     <color name="colorBackgroundLight">#34383e</color>
+
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorOpacityWhite">#64ffffff</color>
+
+    <color name="colorBack">#2bc283</color>
+    <color name="colorFront">#42a5f5</color>
+
     <!--<color name="colorBackground">#303030</color>
     <color name="colorBackgroundLight">#424242</color>-->
 </resources>

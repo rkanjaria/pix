@@ -14,15 +14,18 @@
         <activity
             android:name="android.test.com.pixie.activities.HomeActivity"
             android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+        <activity
+            android:name="android.test.com.pixie.activities.ImageActivity"
+            android:theme="@style/AppTheme.Transparent" />
+        <activity android:name="android.test.com.pixie.activities.UserProfileActivity" />
+        <activity android:name="android.test.com.pixie.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="android.test.com.pixie.activities.ImageActivity"
-            android:theme="@style/AppTheme.Transparent"/>
     </application>
 
 </manifest>

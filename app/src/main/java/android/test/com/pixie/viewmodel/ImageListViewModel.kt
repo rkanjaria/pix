@@ -33,10 +33,10 @@ class ImageListViewModel : ViewModel() {
         imageList = LivePagedListBuilder<Int, Image>(imageDataSourceFactory, config).build()
     }
 
-    fun getState(): LiveData<State> = Transformations.switchMap<ImageDataSource, State>(imageDataSourceFactory.imageDatasourceLiveData, ImageDataSource::state)
+    fun getState(): LiveData<State> = Transformations.switchMap<ImageDataSource, State>(imageDataSourceFactory.imageDataSourceLiveData, ImageDataSource::state)
 
     fun retry() {
-        imageDataSourceFactory.imageDatasourceLiveData.value?.retry()
+        imageDataSourceFactory.imageDataSourceLiveData.value?.retry()
     }
 
     fun listIsEmpty() = imageList.value?.isEmpty() ?: true
