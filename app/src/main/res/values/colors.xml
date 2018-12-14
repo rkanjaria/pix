@@ -5,6 +5,7 @@
     <color name="colorAccent">#3a4e70</color>
     <color name="colorBackground">#22252a</color>
     <color name="colorBackgroundLight">#34383e</color>
+    <color name="colorBackgroundCenter">#8722252a</color>
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorOpacityWhite">#64ffffff</color>
