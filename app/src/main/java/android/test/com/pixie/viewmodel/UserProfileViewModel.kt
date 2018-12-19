@@ -2,7 +2,7 @@ package android.test.com.pixie.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.repositories.UserProfileRepository
 import io.reactivex.disposables.CompositeDisposable
@@ -16,7 +16,13 @@ class UserProfileViewModel(application: Application) : AndroidViewModel(applicat
         userProfileRepository = UserProfileRepository(compositeDisposable)
     }
 
-    fun getUserClickedImages(userName: String): MutableLiveData<List<Image>>? {
+    fun getUserClickedImages(userName: String): LiveData<List<Image>>? {
         return userProfileRepository.getUserClickedImages(userName)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+        compositeDisposable.dispose()
     }
 }

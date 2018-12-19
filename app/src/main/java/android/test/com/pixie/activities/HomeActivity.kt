@@ -12,7 +12,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.test.com.pix.R
-import android.test.com.pixie.adapters.ImageAdapter
+import android.test.com.pixie.adapters.ImagePagingAdapter
+import android.test.com.pixie.interfaces.ImageAdapterListener
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.utils.PARCELABLE_OBJECT
 import android.test.com.pixie.utils.State
@@ -24,7 +25,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
-class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageAdapter.ImageAdapterListener {
+class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageAdapterListener {
 
     override fun onClickImage(image: Image?, imageCard: View) {
         val imageIntent = Intent(this, ImageActivity::class.java)
@@ -45,7 +46,7 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
     override fun onQueryTextChange(newText: String?) = false
 
     private lateinit var viewModel: ImageListViewModel
-    private lateinit var imageAdapter: ImageAdapter
+    private lateinit var imageAdapter: ImagePagingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +84,7 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
     }
 
     private fun initAdapter() {
-        imageAdapter = ImageAdapter({ viewModel.retry() }, this)
+        imageAdapter = ImagePagingAdapter({ viewModel.retry() }, this)
         pixRecyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         pixRecyclerview.adapter = imageAdapter
         initObserver()

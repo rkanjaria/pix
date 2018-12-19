@@ -40,6 +40,17 @@ fun ImageView.loadCircularImage(url: String?, placeholderColor: String? = "#E0E0
             .into(this)
 }
 
+fun ImageView.loadBlurImage(url: String?, placeholderColor: String? = "#E0E0E0", blurRadius: Float) {
+    val placeholder = ColorDrawable()
+    placeholder.color = Color.parseColor(placeholderColor)
+    Glide.with(context)
+            .load(url)
+            .apply(RequestOptions().transform(BlurTransform(context, 50f)))
+            .apply(RequestOptions().centerCrop())
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+}
+
 fun Context.showMessage(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()
 }

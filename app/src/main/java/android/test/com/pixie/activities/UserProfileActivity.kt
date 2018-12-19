@@ -2,7 +2,6 @@ package android.test.com.pixie.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.arch.paging.PagedList
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
@@ -12,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.test.com.pix.R
 import android.test.com.pixie.adapters.ImageAdapter
+import android.test.com.pixie.interfaces.ImageAdapterListener
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.models.User
 import android.test.com.pixie.utils.PARCELABLE_OBJECT
@@ -20,7 +20,7 @@ import android.test.com.pixie.viewmodel.UserProfileViewModel
 import android.view.View
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
-class UserProfileActivity : AppCompatActivity(), ImageAdapter.ImageAdapterListener {
+class UserProfileActivity : AppCompatActivity(), ImageAdapterListener {
 
     override fun onClickImage(image: Image?, imageCard: View) {
         val imageIntent = Intent(this, ImageActivity::class.java)
@@ -38,16 +38,20 @@ class UserProfileActivity : AppCompatActivity(), ImageAdapter.ImageAdapterListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
         user = intent.getParcelableExtra(PARCELABLE_OBJECT)
-        initUI()
         initViewModel(user.username)
+        initUI()
     }
 
     fun initUI() {
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        //userBigImage.loadBlurImage(user.profileImage?.large, blurRadius = 200f)
         userImage.loadCircularImage(user.profileImage?.large)
         userName.text = user.name
 
-        imageAdapter = ImageAdapter({}, this)
+        imageAdapter = ImageAdapter(this)
         userPixRecyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         userPixRecyclerview.adapter = imageAdapter
 
@@ -60,7 +64,7 @@ class UserProfileActivity : AppCompatActivity(), ImageAdapter.ImageAdapterListen
                     collapsingToolbar.title = user.name
                     isShow = true
                 } else if (isShow) {
-                    collapsingToolbar.title = ""
+                    collapsingToolbar.title = " "
                     isShow = false
                 }
             }
@@ -69,11 +73,10 @@ class UserProfileActivity : AppCompatActivity(), ImageAdapter.ImageAdapterListen
 
     fun initViewModel(userName: String?) {
         viewModel = ViewModelProviders.of(this).get(UserProfileViewModel::class.java)
-        if (userName != null) {
-            viewModel.getUserClickedImages(userName)?.observe(this, object : Observer<List<Image>> {
+        userName?.let {
+            viewModel.getUserClickedImages(it)?.observe(this, object : Observer<List<Image>> {
                 override fun onChanged(imageList: List<Image>?) {
-                    imageAdapter.submitList(imageList as PagedList<Image>)
-                    imageAdapter.notifyDataSetChanged()
+                    imageAdapter.submitList(imageList)
                 }
             })
         }
