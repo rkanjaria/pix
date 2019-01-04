@@ -13,8 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="android.test.com.pixie.activities.HomeActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
             android:name="android.test.com.pixie.activities.ImageActivity"
             android:theme="@style/AppTheme.Transparent" />
@@ -26,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="android.test.com.pixie.activities.UserPreferenceActivity"></activity>
     </application>
 
 </manifest>

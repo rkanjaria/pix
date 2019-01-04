@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.test.com.pix.R
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.utils.PARCELABLE_OBJECT
+import android.test.com.pixie.utils.STRING
 import android.test.com.pixie.utils.loadCircularImage
 import android.view.View
 import android.view.ViewGroup
@@ -61,6 +62,7 @@ class ImageActivity : AppCompatActivity() {
         userImage.setOnClickListener {
             val userIntent = Intent(this, UserProfileActivity::class.java)
             userIntent.putExtra(PARCELABLE_OBJECT, image.user)
+            userIntent.putExtra(STRING, image.urls?.regular)
             startActivity(userIntent)
         }
 

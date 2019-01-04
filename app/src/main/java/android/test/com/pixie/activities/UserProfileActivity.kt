@@ -15,8 +15,11 @@ import android.test.com.pixie.interfaces.ImageAdapterListener
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.models.User
 import android.test.com.pixie.utils.PARCELABLE_OBJECT
+import android.test.com.pixie.utils.STRING
 import android.test.com.pixie.utils.loadCircularImage
+import android.test.com.pixie.utils.loadImage
 import android.test.com.pixie.viewmodel.UserProfileViewModel
+import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_user_profile.*
 
@@ -47,7 +50,7 @@ class UserProfileActivity : AppCompatActivity(), ImageAdapterListener {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //userBigImage.loadBlurImage(user.profileImage?.large, blurRadius = 200f)
+        userBigImage.loadImage(intent.getStringExtra(STRING))
         userImage.loadCircularImage(user.profileImage?.large)
         userName.text = user.name
 
@@ -80,5 +83,12 @@ class UserProfileActivity : AppCompatActivity(), ImageAdapterListener {
                 }
             })
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> super.onBackPressed()
+        }
+        return true
     }
 }

@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_300dp"
+        android:layout_height="@dimen/size_250dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -36,15 +36,26 @@
                     android:id="@+id/userBigImage"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/colorBackground"
+                    android:alpha="0.8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
                 <ImageView
                     android:id="@+id/userImage"
-                    android:layout_width="@dimen/size_120dp"
-                    android:layout_height="@dimen/size_120dp"
+                    android:layout_width="@dimen/size_100dp"
+                    android:layout_height="@dimen/size_100dp"
                     android:scaleType="centerCrop"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +79,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="@dimen/size_44dp"
                 android:layout_gravity="bottom"
                 android:background="@drawable/scrim_bottom" />
 
