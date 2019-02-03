@@ -3,7 +3,7 @@ package android.test.com.pixie.utils
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView

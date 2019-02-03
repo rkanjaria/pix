@@ -1,8 +1,8 @@
 package android.test.com.pixie.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.repositories.UserProfileRepository
 import io.reactivex.disposables.CompositeDisposable

@@ -3,7 +3,7 @@ package android.test.com.pixie.widgets
 import android.content.Context
 import android.graphics.LinearGradient
 import android.graphics.Shader
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.test.com.pix.R
 import android.util.AttributeSet
 import android.widget.TextView

@@ -1,16 +1,16 @@
 package android.test.com.pixie.activities
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.res.ResourcesCompat
-import android.support.v4.view.ViewCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.SearchView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.test.com.pix.R
 import android.test.com.pixie.adapters.ImagePagingAdapter
 import android.test.com.pixie.interfaces.ImageAdapterListener
@@ -59,12 +59,12 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
     }
 
     fun initSearchView() {
-        val searchText = pixSearch.findViewById<TextView>(android.support.v7.appcompat.R.id.search_src_text)
+        val searchText = pixSearch.findViewById<TextView>(R.id.search_src_text)
         searchText.typeface = ResourcesCompat.getFont(this, R.font.lato_medium)
         searchText.textSize = 16f
         searchText.setTextColor(ContextCompat.getColor(this, R.color.colorWhite))
         searchText.setHintTextColor(ContextCompat.getColor(this, R.color.colorOpacityWhite))
-        val searchButtonImage = pixSearch.findViewById<ImageView>(android.support.v7.appcompat.R.id.search_mag_icon)
+        val searchButtonImage = pixSearch.findViewById<ImageView>(R.id.search_mag_icon)
         searchButtonImage.setImageResource(R.drawable.ic_search)
         val closeButtonImage = pixSearch.findViewById<ImageView>(R.id.search_close_btn)
         closeButtonImage.setImageResource(R.drawable.ic_close)
@@ -85,7 +85,7 @@ class HomeActivity : AppCompatActivity(), SearchView.OnQueryTextListener, ImageA
 
     private fun initAdapter() {
         imageAdapter = ImagePagingAdapter({ viewModel.retry() }, this)
-        pixRecyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        pixRecyclerview.layoutManager = StaggeredGridLayoutManager(2, androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL)
         pixRecyclerview.adapter = imageAdapter
         initObserver()
     }

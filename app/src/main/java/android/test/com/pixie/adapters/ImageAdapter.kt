@@ -1,9 +1,9 @@
 package android.test.com.pixie.adapters
 
-import android.support.constraint.ConstraintSet
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.test.com.pix.R
 import android.test.com.pixie.interfaces.ImageAdapterListener
 import android.test.com.pixie.models.Image

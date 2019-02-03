@@ -3,8 +3,8 @@ package android.test.com.pixie.activities
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.constraint.ConstraintSet
-import android.support.v7.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.appcompat.app.AppCompatActivity
 import android.test.com.pix.R
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.utils.PARCELABLE_OBJECT

@@ -1,7 +1,7 @@
 package android.test.com.pixie.datasource
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.PageKeyedDataSource
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.PageKeyedDataSource
 import android.test.com.pixie.helpers.RetrofitApiService
 import android.test.com.pixie.models.Image
 import android.test.com.pixie.utils.State

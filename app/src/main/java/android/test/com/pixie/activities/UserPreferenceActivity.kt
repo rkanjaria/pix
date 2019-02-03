@@ -1,7 +1,7 @@
 package android.test.com.pixie.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.test.com.pix.R
 
 class UserPreferenceActivity : AppCompatActivity() {
