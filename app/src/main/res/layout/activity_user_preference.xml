@@ -1,85 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="android.test.com.pixie.activities.UserPreferenceActivity">
+    android:orientation="vertical"
+    tools:context="android.test.com.pixie.activities.UserPreferenceActivity"
+    android:padding="@dimen/size_16dp"
+    android:weightSum="100">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="What do you like?"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_24"
+        android:gravity="center_vertical"
+        android:layout_weight="8"/>
 
     <com.google.android.material.chip.ChipGroup
-        android:layout_width="0dp"
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:chipSpacingHorizontal="@dimen/size_8dp">
+        app:chipSpacingHorizontal="@dimen/size_16dp"
+        android:layout_weight="84">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Textures &amp; Patterns"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nature"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Events"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Architecture"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Business &amp; Work"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Animals"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Girls" />
+            android:text="Travel"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cars" />
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bikes" />
+            android:text="Fashion"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nature" />
+            android:text="Food &amp; Drink"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Painting" />
+            android:text="Spirituality"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Birds" />
+            android:text="Experimental"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flowers" />
+            android:text="People"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Girls" />
+            android:text="Health"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Girls" />
+            android:text="Girls"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
         <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Girls" />
-
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Girls" />
-
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Girls" />
-
-        <com.google.android.material.chip.Chip
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Girls" />
+            android:text="Arts &amp; Culture"
+            android:textAppearance="@style/ChipTextStyle"
+            app:chipEndPadding="@dimen/size_16dp"
+            app:chipStartPadding="@dimen/size_16dp" />
 
     </com.google.android.material.chip.ChipGroup>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonDone"
+        android:layout_width="@dimen/size_150dp"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_gravity="end"
+        app:cornerRadius="@dimen/size_20dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:text="Explore" />
+
+</LinearLayout>

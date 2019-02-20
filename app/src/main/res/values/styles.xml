@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -20,6 +20,11 @@
 
     <style name="ToolbarTextStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:fontFamily">@font/lato_medium</item>
+    </style>
+
+    <style name="ChipTextStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/lato_medium</item>
     </style>
 

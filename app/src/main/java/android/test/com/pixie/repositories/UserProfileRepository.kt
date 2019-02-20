@@ -17,7 +17,7 @@ class UserProfileRepository(val compositeDisposable: CompositeDisposable) {
         compositeDisposable.add(RetrofitHelper.create().getUserClickedPhotos(userName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe { imageList, error ->
+                .subscribe { imageList, _ ->
                     _userImagesList.postValue(imageList)
                 })
 
