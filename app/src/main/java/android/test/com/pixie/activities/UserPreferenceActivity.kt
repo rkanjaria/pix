@@ -14,6 +14,7 @@ class UserPreferenceActivity : AppCompatActivity() {
 
         buttonDone.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 }
